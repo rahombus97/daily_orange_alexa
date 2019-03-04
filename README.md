@@ -1,6 +1,6 @@
 ## The Daily Orange Alexa Skill
 
-!["The Daily Orange"](https://pbs.twimg.com/profile_images/875776635995172864/1O0Fh9Ki_400x400.jpg)
+!["The Daily Orange"](http://dailyorange.com/wp-content/themes/ostrom/images/logo-hdr.png)
 
 !["Alexa"](https://www.iotashome.com/wp-content/uploads/logo-amazon-alexa-2018.png)
 
