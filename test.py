@@ -1,3 +1,3 @@
-from getHeadlines import getHeadlines
+from Headlines import getHeadlines
 
 print(getHeadlines())

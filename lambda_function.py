@@ -2,20 +2,18 @@ import logging
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import is_request_type, is_intent_name
-from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model.ui import StandardCard
 from ask_sdk_model.ui.image import Image
-from ask_sdk_model import Response
+
+from Headlines import HeadLines
 
 sb = SkillBuilder()
-
-from getHeadlines import HeadLines
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-daily_orange_logo = Image("https://pbs.twimg.com/profile_images/875776635995172864/1O0Fh9Ki_400x400.jpg")
+DAILY_ORANGE_LOGO = Image("https://pbs.twimg.com/profile_images/875776635995172864/1O0Fh9Ki_400x400.jpg")
 
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
@@ -24,7 +22,7 @@ def launch_request_handler(handler_input):
     speech_text = "Welcome to the Daily Orange skill, you can ask for the headlines!"
 
     return handler_input.response_builder.speak(speech_text).set_card(
-        StandardCard("Daily Orange", speech_text, daily_orange_logo)).set_should_end_session(
+        StandardCard("Daily Orange", speech_text, DAILY_ORANGE_LOGO)).set_should_end_session(
         False).response
 
 
@@ -35,7 +33,7 @@ def read_headlines_intent_handler(handler_input):
     speech_text = HeadLines().getHeadlines()
 
     return handler_input.response_builder.speak(speech_text).set_card(
-        StandardCard("Daily Orange", speech_text, daily_orange_logo)).set_should_end_session(
+        StandardCard("Daily Orange", speech_text, DAILY_ORANGE_LOGO)).set_should_end_session(
         True).response
 
 
@@ -47,7 +45,7 @@ def help_intent_handler(handler_input):
 
     return handler_input.response_builder.speak(speech_text).ask(
         speech_text).set_card(StandardCard(
-            "Daily Orange", speech_text, daily_orange_logo)).response
+            "Daily Orange", speech_text, DAILY_ORANGE_LOGO)).response
 
 
 @sb.request_handler(
@@ -60,7 +58,7 @@ def cancel_and_stop_intent_handler(handler_input):
     speech_text = "See ya! Go Orange!"
 
     return handler_input.response_builder.speak(speech_text).set_card(
-        StandardCard("Daily Orange", speech_text, daily_orange_logo)).response
+        StandardCard("Daily Orange", speech_text, DAILY_ORANGE_LOGO)).response
 
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.FallbackIntent"))
