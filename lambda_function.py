@@ -13,7 +13,7 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-DAILY_ORANGE_LOGO = Image("https://pbs.twimg.com/profile_images/875776635995172864/1O0Fh9Ki_400x400.jpg")
+DAILY_ORANGE_LOGO = Image("https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Otto_the_Orange_logo.svg/1920px-Otto_the_Orange_logo.svg.png")
 
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
@@ -28,9 +28,12 @@ def launch_request_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("ReadHeadlinesIntent"))
 def read_headlines_intent_handler(handler_input):
-    """Handler for Hello World Intent."""
+    """Handler for Read Headlines Intent."""
     # type: (HandlerInput) -> Response
-    speech_text = HeadLines().getHeadlines()
+    try: 
+        speech_text = HeadLines().getHeadlines()
+    except Exception as e:
+        logger.error("An error occured: {e}")
 
     return handler_input.response_builder.speak(speech_text).set_card(
         StandardCard("Daily Orange", speech_text, DAILY_ORANGE_LOGO)).set_should_end_session(

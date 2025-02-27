@@ -34,4 +34,5 @@ class HeadLines():
             else:
                 transition = self._getRandomTransition()
             headlines += '{}, {}. {}'.format(transition, headline, summary)
+        print(headlines)
         return headlines
